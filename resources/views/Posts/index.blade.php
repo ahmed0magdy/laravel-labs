@@ -1,4 +1,5 @@
-@extends('Layout.header')
+@extends('layouts.app')
+
 
 @section('title') Index @endsection
 @section('content')
@@ -10,6 +11,7 @@
 	<thead>
 		<tr>
 			<th scope="col">#</th>
+			<th scope="col">Slug</th>
 			<th scope="col">Title</th>
 			<th scope="col">Posted By</th>
 			<th scope="col">Created At</th>
@@ -20,6 +22,7 @@
 		@foreach ($posts as $post)
 		<tr>
 			<td>{{$post['id']}}</th>
+			<td>{{$post['slug']}}</th>
 			<td>{{$post['title']}}</td>
 			<td>{{$post->user->name}}</td>
 			<td>{{ $post->created_at->format('Y-m-d') }}</td>
@@ -33,10 +36,9 @@
 
 					<x-button class="primary" text="Edit" />
 				</form>
-				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					Delete
 				</button>
-
 				<!-- Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,7 +72,8 @@
 		@endforeach
 	</tbody>
 </table>
+
 <div class="d-flex justify-content-center">
-            {!! $posts->links() !!}
-        </div>
+	{!! $posts->links() !!}
+</div>
 @endsection

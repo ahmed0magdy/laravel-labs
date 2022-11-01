@@ -1,11 +1,13 @@
-@extends('layout.header')
+@extends('layouts.app')
+
 
 @section('title') update @endsection
 @section('content')
-<form action="{{route('posts.update',$post->id)}}" method="POST">
+<form action="{{route('posts.update',$post->id)}}" enctype="multipart/form-data" method="POST">
 
   @csrf
   @method('PUT')
+  @include('layout.error')
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Title</label>
     <input name="title" value="{{$post->title}}" type="text" class="form-control" id="exampleInputEmail1"
@@ -26,6 +28,10 @@
       @endforeach
     </select>
   </div>
+  <div class="mb-3">
+		<label for="exampleInputEmail1" class="form-label">image</label>
+		<input type="file" class="form-control" name="image">
+	</div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
